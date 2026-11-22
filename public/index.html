@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#101426">
+  <title>Ultimate Party Battle</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand-mark">UPB</div>
+      <div><div class="brand">ULTIMATE PARTY BATTLE</div><div class="tagline">PLAY TOGETHER. WIN TOGETHER.</div></div>
+      <div class="online-pill"><span></span> ONLINE</div>
+    </header>
+
+    <main>
+      <section id="home" class="panel home-panel">
+        <div class="eyebrow">MULTIPLAYER PARTY ARENA</div>
+        <h1>Masuk ke<br><span>Battle Arena.</span></h1>
+        <p class="lead">Kumpulkan koin, kalahkan skor temanmu, dan jadilah juara.</p>
+        <label for="playerName">NAMA PEMAIN</label>
+        <input id="playerName" maxlength="16" placeholder="Masukkan nama kamu" autocomplete="nickname">
+        <button id="createBtn" class="primary">BUAT ROOM <b>＋</b></button>
+        <div class="or"><span>ATAU GABUNG</span></div>
+        <div class="join-row">
+          <input id="roomCode" maxlength="5" placeholder="KODE ROOM" autocapitalize="characters">
+          <button id="joinBtn" class="secondary">GABUNG</button>
+        </div>
+        <div id="homeMessage" class="message" aria-live="polite"></div>
+        <div class="feature-row"><span>⚡ 2–10 PEMAIN</span><span>🌐 ONLINE</span><span>🎮 3D ARENA</span></div>
+      </section>
+
+      <section id="lobby" class="panel lobby-panel hidden">
+        <div class="eyebrow">ROOM LOBBY</div>
+        <div class="room-code-wrap"><div><small>KODE UNDANGAN</small><strong id="roomCodeDisplay">-----</strong></div><button id="copyBtn" class="small-btn">SALIN</button></div>
+        <h2>Daftar pemain <span id="playerCount">0/10</span></h2>
+        <div id="playerList" class="player-list"></div>
+        <p id="lobbyHint" class="muted">Menunggu pemain lain bergabung...</p>
+        <button id="startBtn" class="primary">MULAI BATTLE <b>→</b></button>
+        <button id="leaveBtn" class="text-btn">KELUAR DARI ROOM</button>
+        <div id="lobbyMessage" class="message"></div>
+      </section>
+
+      <section id="game" class="game-panel hidden">
+        <div class="hud">
+          <div class="hud-card"><small>WAKTU</small><strong id="timer">01:30</strong></div>
+          <div class="hud-card"><small>SKOR SAYA</small><strong id="myScore">0</strong></div>
+          <div class="hud-card"><small>ROOM</small><strong id="gameRoom">-----</strong></div>
+        </div>
+        <div id="gameCanvasWrap"><div id="loading3d">Memuat arena 3D...</div></div>
+        <div class="game-bottom">
+          <div class="leaderboard"><strong>KLASEMEN</strong><div id="scoreList"></div></div>
+          <div class="touch-controls">
+            <button class="control up" data-dir="up">▲</button>
+            <button class="control left" data-dir="left">◀</button>
+            <button class="control down" data-dir="down">▼</button>
+            <button class="control right" data-dir="right">▶</button>
+          </div>
+        </div>
+        <p class="game-tip">Gerakkan karakter untuk mengambil koin bercahaya.</p>
+      </section>
+
+      <section id="results" class="panel results-panel hidden">
+        <div class="eyebrow">ROUND SELESAI</div><h1>Hasil <span>Battle.</span></h1>
+        <div id="ranking"></div>
+        <button id="backLobbyBtn" class="primary">KEMBALI KE LOBBY</button>
+      </section>
+    </main>
+    <footer>ULTIMATE PARTY BATTLE <span>•</span> WEB EDITION</footer>
+  </div>
+  <div id="toast" role="status"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="/game.js"></script>
+  <script src="/client.js"></script>
+</body>
+</html>
